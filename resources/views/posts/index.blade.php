@@ -1,6 +1,7 @@
 @extends ('layouts.master')
 
 @section ('content')
+    @include('layouts.categories')
     <div class="container">
         <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark">
             <div class="col-md-6 px-0">

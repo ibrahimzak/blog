@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use \App\Billing\Stripe;
+use Illuminate\Support\Facades\Schema;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -16,6 +17,7 @@ class AppServiceProvider extends ServiceProvider
     {
         view()->composer('posts.index', function ($view) {
             $view->with('archives', \App\Post::archives());
+            Schema::defaultStringLength(191);
         });
     }
 

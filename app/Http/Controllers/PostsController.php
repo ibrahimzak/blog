@@ -12,7 +12,7 @@ class PostsController extends Controller
 
     public function __construct()
     {
-        $this->middleware('auth')->except(['index', 'show', 'list', 'delete', 'edit', 'save', 'create', 'store']);
+        $this->middleware('auth:admin')->except('index', 'show');
     }
 
     public function index(Post $posts) {
@@ -29,7 +29,8 @@ class PostsController extends Controller
     }
 
     public function show(Post $post) {
-        return view('posts.show', compact('post'));
+        $categories = Category::all();
+        return view('posts.show', compact('post', 'categories'));
     }
 
     public function edit(Post $post) {
