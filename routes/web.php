@@ -23,6 +23,7 @@ Route::post('/posts', 'PostsController@store');
 Route::delete('/posts/{post}', 'PostsController@delete');
 
 Route::post('/posts/{post}/comments', 'CommentsController@store');
+Route::get('/category/{category}', 'CategoriesController@show');
 
 // Users routes
 Route::get('/register', 'RegistrationController@create');

@@ -32,6 +32,10 @@ class CategoryController extends Controller
         return redirect('/categories');
     }
 
+    public function show(Category $category) {
+        return view('posts.index', compact('category'));
+    }
+
     public function edit(Category $category) {
         return view('dashboard.categories.edit', compact('category'));
     }

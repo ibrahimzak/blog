@@ -454,7 +454,7 @@
             "time": "2015-04-20T18:58:01+00:00"
         },
         {
-            "name": "laravel/framework",
+            "name": "cc/framework",
             "version": "v5.6.15",
             "source": {
                 "type": "git",
