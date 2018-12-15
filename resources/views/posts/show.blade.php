@@ -9,6 +9,7 @@
         {{ $post->body }}
     </div>
     <hr>
+    <h5>Comments:</h5>
     @foreach($post->comments as $comment)
         <div>
             <ul class="list-group">

@@ -1,47 +1,42 @@
 @extends('dashboard.master')
-@section('categoriesActive')
+@section('consultationsActive')
     active
 @endsection
 @section('content')
 
 @section('title')
-    Categories
+    Consultations
 @endsection
-@section('button')
-    <a class="nav-link @yield('categoriesActive')" href="/categories/create">
-        <span data-feather="plus-circle"></span>
-        Add new category
-    </a>
-@endsection
+
 
 <table class="table">
     <thead class="thead-dark">
     <tr>
         <th scope="col">#</th>
-        <th scope="col">Name</th>
-
+        <th scope="col">Title</th>
+        <th scope="col">Body</th>
         <th scope="col">Create date</th>
-        <th scope="col">Edit</th>
+        <th scope="col">Answer</th>
         <th scope="col">Delete</th>
     </tr>
     </thead>
     <tbody>
-    @foreach($categories as $category)
+    @foreach($cons as $con)
         <tr>
-            <th scope="row">{{ $category->id }}</th>
-            <td>{{ $category->name }}</td>
+            <th scope="row">{{ $con->id }}</th>
+            <td>{{ $con->title }}</td>
+            <td>{{ $con->body }}</td>
 
-            <td>{{$category->created_at}}</td>
+            <td>{{$con->created_at}}</td>
             <td>
-                <a  href="/category/{{$category->id}}/edit">
+                <a  href="/consultations/{{$con->id}}">
                     <i class="far fa-edit"></i>
                 </a>
             </td>
             <td>
-                <a onclick="getCurrentCategory({{$category->id}})" href="" style="color:red;" data-toggle="modal" data-target="#exampleModal">
+                <a onclick="getCurrentConsultation({{$con->id}})" href="" style="color:red;" data-toggle="modal" data-target="#exampleModal">
                     <i class="far fa-trash-alt"></i>
                 </a>
-
             </td>
         </tr>
     @endforeach
@@ -89,9 +84,9 @@
     </div>
 </div>
 <script>
-    var current_category = 0;
-    function getCurrentCategory(categoryId) {
-        current_category = categoryId;
+    var current_con = 0;
+    function getCurrentConsultation(conId) {
+        current_con = conId;
     }
 
     function deleteCategory() {

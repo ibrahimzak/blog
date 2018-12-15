@@ -14,7 +14,6 @@
             <th scope="col">Full name</th>
             <th scope="col">Email</th>
             <th scope="col">Registration date</th>
-            <th scope="col">is admin</th>
             <th scope="col">Delete</th>
         </tr>
         </thead>
@@ -25,16 +24,6 @@
             <td>{{ $user->name }}</td>
             <td>{{$user->email}}</td>
             <td>{{$user->created_at}}</td>
-            <td>
-                @if($user->is_admin)
-                    <input class="form-check-input" type="radio" onclick="makeAdmin(false, {{$user->id}})" checked>
-                @else
-                    <input class="form-check-input" type="radio" onclick="makeAdmin(true, {{$user->id}})">
-                @endif
-                {{--<a href="">--}}
-                    {{--<i class="far fa-edit"></i>--}}
-                {{--</a>--}}
-            </td>
             <td>
                 <a onclick="getCurrentUser({{$user->id}})" href="/users/{{$user->id}}/delete" style="color:red;" data-toggle="modal" data-target="#exampleModal">
                     <i class="far fa-trash-alt"></i>
@@ -90,34 +79,6 @@
         function getCurrentUser(userId) {
             currnet_user = userId;
             // alert(currnet_user);
-        }
-
-        function makeAdmin(to_admin, user_id) {
-            if (to_admin) {
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    url: '/users/' + user_id,
-                    type: "POST",
-                    data: { is_admin: true },
-                    success: function (d) {
-                        location.reload();
-                    }
-                })
-            } else {
-                $.ajax({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    url: '/users/' + user_id,
-                    type: "POST",
-                    data: { is_admin: false },
-                    success: function (d) {
-                        location.reload();
-                    }
-                })
-            }
         }
 
         function deleteUser() {

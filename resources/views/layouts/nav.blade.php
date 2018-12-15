@@ -4,7 +4,7 @@
             <div class="col-4 pt-1">
 
                 @if(Auth::check())
-                    <a class="text-muted" href="#">{{ Auth::user()->name }}</a>
+                    <a class="text-muted" href="/myconsultations">{{ Auth::user()->name }}</a>
                 @endif
             </div>
             <div class="col-4 text-center">

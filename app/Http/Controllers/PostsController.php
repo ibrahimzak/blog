@@ -18,7 +18,8 @@ class PostsController extends Controller
     }
 
     public function index(Post $posts) {
-        $posts = $posts->all()->reverse();
+//        $posts = $posts->all()->reverse();
+        $posts = Post::orderBy('views', 'DESC')->get();
         $categories = Category::all();
 
         return view('posts.index', compact('posts', 'categories'));
@@ -32,6 +33,8 @@ class PostsController extends Controller
 
     public function show(Post $post) {
         $categories = Category::all();
+        $post->views = $post->views + 1;
+        $post->save();
         return view('posts.show', compact('post', 'categories'));
     }
 

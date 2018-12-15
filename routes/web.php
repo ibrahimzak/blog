@@ -49,9 +49,12 @@ Route::delete('/category/{category}', 'CategoryController@delete');
 
 // Consultations routes
 Route::get('/consultation', 'ConsultationController@index');
+Route::get('/consultations/{consultation}', 'ConsultationController@show');
 Route::post('/consultation', 'ConsultationController@store');
+Route::post('/consultations/{consultation}/answer', 'ConsultationController@answer');
+Route::get('/myconsultations', 'ConsultationController@userConsultations');
 
-
+Route::get('/consultations', 'ConsultationController@list');
 Route::prefix('admin')->group(function() {
     Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
     Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
