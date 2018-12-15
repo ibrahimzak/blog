@@ -3,7 +3,7 @@
     <div class="col-sm-8">
         <h1>Register</h1>
 
-        <form action="/register" method="post">
+        <form action="/register" method="post" style="margin-bottom: 10rem;">
             {{ csrf_field() }}
 
             <div class="form-group">
@@ -14,6 +14,24 @@
             <div class="form-group">
                 <label for="email">Email:</label>
                 <input type="email" class="form-control" id="email" name="email">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Phone:</label>
+                <input type="text" class="form-control" id="phone" name="phone">
+            </div>
+
+            <div class="form-group">
+                <label for="email">Age:</label>
+                <input type="number" class="form-control" id="age" name="age">
+            </div>
+
+            <div class="form-group">
+                <label for="gender">Gender</label>
+                <select class="custom-select" name="gender" id="gender">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
             </div>
 
             <div class="form-group">

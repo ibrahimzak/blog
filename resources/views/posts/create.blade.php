@@ -10,9 +10,7 @@
         </div>
         <div class="form-group">
             <label for="body">Body</label>
-            <textarea class="form-control" name="body">
-
-            </textarea>
+            <textarea class="form-control" name="body"></textarea>
         </div>
         <div class="form-group">
             <button type="submit" class="btn btn-primary">Publish</button>

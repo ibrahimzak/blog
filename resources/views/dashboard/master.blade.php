@@ -31,9 +31,9 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">
+                        <a class="nav-link @yield('consultationsActive')" href="/consultations">
                             <span data-feather="message-circle"></span>
-                            Messages
+                            Consultations
                         </a>
                     </li>
                 </ul>

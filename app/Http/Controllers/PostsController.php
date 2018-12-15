@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use Illuminate\Support\Facades\Input as Input;
+
 use App\Repositories\Posts;
 use Illuminate\Http\Request;
 use App\Post;
@@ -34,7 +36,8 @@ class PostsController extends Controller
     }
 
     public function edit(Post $post) {
-        return view('dashboard.edit_post', compact('post'));
+        $categories = Category::all();
+        return view('dashboard.edit_post', compact('post', 'categories'));
     }
 
     public function save(Post $post) {
@@ -45,6 +48,7 @@ class PostsController extends Controller
         $data = request()->all();
         $post->title = $data['title'];
         $post->body = $data['body'];
+        $post->category_id = $data['category'];
         $post->save();
         return redirect('/posts');
     }
@@ -54,17 +58,22 @@ class PostsController extends Controller
         return view('dashboard.posts.create', compact('categories'));
     }
 
-    public function store() {
-
+    public function store(Request $request) {
+//        dd($request);
         $this->validate(request(), [
             'title' => 'required',
             'body' => 'required',
             'category'  => 'required'
-
         ]);
+        $getimageName = time().'.'.$request->image->getClientOriginalExtension();
+        $request->image->move(public_path('images'), $getimageName);
+
         $data = request()->all();
+
         $post = new Post(request(['title', 'body', 'image']));
-        $post->cat_id = $data['category'];
+        $post->category_id = $data['category'];
+        $post->image = $getimageName;
+
         auth()->user()->publish($post);
         return redirect('/posts');
     }

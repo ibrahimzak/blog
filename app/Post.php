@@ -1,7 +1,7 @@
 <?php
 
 namespace App;
-
+use Auth;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
@@ -13,9 +13,9 @@ class Post extends Model
         return $this->hasMany(Comment::class);
     }
 
-    public function user() {
-        return $this->belongsTo(User::class);
-    }
+//    public function user() {
+//        return $this->belongsTo(User::class);
+//    }
 
     public function admin() {
         return $this->belongsTo(Admin::class);
@@ -26,7 +26,10 @@ class Post extends Model
     }
 
     public function addComment($body) {
-        $this->comments()->create(compact('body'));
+        $comment = new Comment();
+        $comment->body = $body;
+        $comment->user_id = Auth::id();
+        $this->comments()->save($comment);
     }
 
     public function scopeFilter($query, $filters) {
@@ -39,13 +42,6 @@ class Post extends Model
 
             $query->whereYear('created_at', $filters['year']);
         }
-//        if ($month = $filters['month']) {
-//            $query->whereMonth('created_at', Carbon::parse($month)->month);
-//        }
-//
-//        if ($year = $filters['year']) {
-//            $query->whereYear('created_at', $year);
-//        }
     }
 
     public static function archives() {

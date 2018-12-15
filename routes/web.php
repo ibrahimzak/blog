@@ -16,14 +16,12 @@ Route::get('/', 'PostsController@index')->name('home');
 Route::get('/posts', 'PostsController@list');
 Route::get('/posts/{post}', 'PostsController@show');
 
-
-
 Route::post('/posts', 'PostsController@store');
 
 Route::delete('/posts/{post}', 'PostsController@delete');
 
 Route::post('/posts/{post}/comments', 'CommentsController@store');
-Route::get('/category/{category}', 'CategoriesController@show');
+Route::get('/category/{category}', 'CategoryController@show');
 
 // Users routes
 Route::get('/register', 'RegistrationController@create');
@@ -43,16 +41,20 @@ Route::get('/post/create', 'PostsController@create');
 
 // Categories routes
 Route::get('/categories', 'CategoryController@index');
-Route::get('/category/create', 'CategoryController@create');
+Route::get('/categories/create', 'CategoryController@create');
 Route::post('/category', 'CategoryController@store');
 Route::get('/category/{category}/edit', 'CategoryController@edit');
 Route::post('/category/{category}/edit', 'CategoryController@save');
 Route::delete('/category/{category}', 'CategoryController@delete');
 
+// Consultations routes
+Route::get('/consultation', 'ConsultationController@index');
+Route::post('/consultation', 'ConsultationController@store');
+
 
 Route::prefix('admin')->group(function() {
     Route::get('/login', 'Auth\AdminLoginController@showLoginForm')->name('admin.login');
     Route::post('/login', 'Auth\AdminLoginController@login')->name('admin.login.submit');
+    Route::get('/logout', 'Auth\AdminLoginController@logout')->name('admin.logout.submit');
     Route::get('/home', 'AdminController@index')->name('admin.home');
-
 });

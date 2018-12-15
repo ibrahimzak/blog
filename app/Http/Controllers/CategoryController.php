@@ -9,13 +9,13 @@ class CategoryController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth:admin');
+        $this->middleware('auth:admin')->except('show');
     }
 
     public function index(Category $categories) {
         $categories = $categories->all();
 
-        return view('dashboard.categories.index', compact('categories'));
+            return view('dashboard.categories.index', compact('categories'));
     }
 
     public function create() {
@@ -33,7 +33,8 @@ class CategoryController extends Controller
     }
 
     public function show(Category $category) {
-        return view('posts.index', compact('category'));
+        $categories = Category::all();
+        return view('posts.index', compact('category', 'categories'));
     }
 
     public function edit(Category $category) {

@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="col-sm-8">
+        <h1>Login</h1>
         <form action="/store" method="POST">
             {{ csrf_field() }}
             <div class="form-group">

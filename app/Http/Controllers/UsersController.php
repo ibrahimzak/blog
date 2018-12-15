@@ -20,12 +20,6 @@ class UsersController extends Controller
 
     public function delete(User $user) {
 
-        if ($user->is_admin) {
-
-            return  response()->json([
-                'msg' => 'You cant delete an admin user.'
-            ]);
-        }
         $user = $user->delete();
     }
 

@@ -5,7 +5,7 @@
     @section('title')
         Create new post
         @endsection
-    <form method="post" action="/posts">
+    <form method="post" action="/posts" enctype="multipart/form-data">
         {{ csrf_field() }}
         <div class="form-group">
             <label for="title">Title</label>
@@ -13,14 +13,12 @@
         </div>
         <div class="form-group">
             <label for="body">Body</label>
-            <textarea class="form-control" name="body">
-
-            </textarea>
+            <textarea class="form-control" name="body"></textarea>
         </div>
         <div class="form-group">
             <div class="custom-file">
-                <input type="file" name="image" class="custom-file-input" id="validatedCustomFile">
-                <label class="custom-file-label" for="validatedCustomFile">Choose post image</label>
+                <input type="file" name="image" class="custom-file-input" id="image">
+                <label class="custom-file-label" for="image">Choose post image</label>
                 <div class="invalid-feedback">Example invalid custom file feedback</div>
             </div>
         </div>
