@@ -19,7 +19,7 @@
             <div class="form-group">
                 <button class="btn btn-primary" type="submit">Send</button>
             </div>
-
+            <div class="g-recaptcha" data-sitekey="6LeoA4IUAAAAAGetMmT_ZkIExqtTJ_JQNHQ7ARxG"></div>
             @include('layouts.errors')
         </form>
     </div>
