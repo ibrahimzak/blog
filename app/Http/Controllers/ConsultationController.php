@@ -30,7 +30,7 @@ class ConsultationController extends Controller
     }
 
     public function list() {
-        $cons = Consultation::all()->where('answered', '=', 0)->reverse();
+        $cons = Consultation::all()->where('answered', '=', 0);
         return view('dashboard.consultations.index', compact('cons'));
     }
 
