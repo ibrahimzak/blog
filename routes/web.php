@@ -26,7 +26,7 @@ Route::get('/category/{category}', 'CategoryController@show');
 // Users routes
 Route::get('/register', 'RegistrationController@create');
 Route::post('/register', 'RegistrationController@store');
-Route::get('/login', 'SessionsController@create');
+Route::get('/login', 'SessionsController@create')->name('login');
 Route::post('/store', 'SessionsController@store');
 Route::get('/logout', 'SessionsController@destroy');
 Route::post('/users/{user}', 'UsersController@update');

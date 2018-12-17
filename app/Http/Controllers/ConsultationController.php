@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 use Auth;
 use App\Consultation;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\ReCaptchataTestFormRequest;
 class ConsultationController extends Controller
 {
     public function index() {
@@ -17,12 +17,21 @@ class ConsultationController extends Controller
         $this->middleware('auth')->except('list', 'answer', 'show');
     }
 
-    public function store() {
-        $this->validate(request(), [
+    public function rules()
+    {
+
+        return [
+            'g-recaptcha-response'=>'required|recaptcha',
             'title' => 'required',
             'body' => 'required'
-        ]);
+        ];
+    }
+
+    public function store(ReCaptchataTestFormRequest $request) {
+//        dd(request());
+//        $this->validate();
 //        \request(['user_id']) = Auth::id();
+//        dd('after val');
         $consultation = new Consultation(\request(['title', 'body']));
         $consultation->user_id = Auth::id();
         $consultation->save();
