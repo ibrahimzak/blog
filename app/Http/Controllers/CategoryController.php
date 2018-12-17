@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+use App\Post;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -34,7 +35,8 @@ class CategoryController extends Controller
 
     public function show(Category $category) {
         $categories = Category::all();
-        return view('posts.index', compact('category', 'categories'));
+        $posts = Post::all();
+        return view('posts.index', compact('category', 'categories', 'posts'));
     }
 
     public function edit(Category $category) {
