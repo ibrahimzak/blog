@@ -19,6 +19,7 @@ class ReCaptchataTestFormRequest extends FormRequest
      */
     public function rules()
     {
+//        dd('sfasdf');
         return [
             'g-recaptcha-response'=>'required|recaptcha'
         ];

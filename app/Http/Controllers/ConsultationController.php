@@ -1,10 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+use App\Http\Requests\ReCaptchataTestFormRequest;
 use Auth;
 use App\Consultation;
 use Illuminate\Http\Request;
-use App\Http\Requests\ReCaptchataTestFormRequest;
+
 class ConsultationController extends Controller
 {
     public function index() {
@@ -17,21 +18,18 @@ class ConsultationController extends Controller
         $this->middleware('auth')->except('list', 'answer', 'show');
     }
 
-    public function rules()
-    {
 
-        return [
-            'g-recaptcha-response'=>'required|recaptcha',
-            'title' => 'required',
-            'body' => 'required'
-        ];
-    }
 
     public function store(ReCaptchataTestFormRequest $request) {
 //        dd(request());
-//        $this->validate();
+        $this->validate($request, [
+            'title' => 'required',
+            'body' => 'required'
+//            'g-recaptcha-response'=>'required|recaptcha'
+        ]);
 //        \request(['user_id']) = Auth::id();
 //        dd('after val');
+        echo '1';
         $consultation = new Consultation(\request(['title', 'body']));
         $consultation->user_id = Auth::id();
         $consultation->save();

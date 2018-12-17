@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ReCaptchataTestFormRequest;
 use Illuminate\Http\Request;
 use App\User;
 
@@ -11,8 +12,8 @@ class RegistrationController extends Controller
         return view('registration.create');
     }
 
-    public function store() {
-        $this->validate(request(), [
+    public function store(ReCaptchataTestFormRequest $request) {
+        $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email',
             'password' => 'required|confirmed',

@@ -45,6 +45,12 @@
             </div>
 
             <div class="form-group">
+                <div class="g-recaptcha" data-sitekey="6LeoA4IUAAAAAGetMmT_ZkIExqtTJ_JQNHQ7ARxG"></div>
+            </div>
+
+
+
+            <div class="form-group">
                 <button class="btn btn-primary" type="submit">Register</button>
             </div>
 
