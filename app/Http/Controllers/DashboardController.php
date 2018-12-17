@@ -17,7 +17,7 @@ class DashboardController extends Controller
         $posts = Post::all()->count();
         $users = User::all()->count();
         $cons = Consultation::all()->where('answered', '=', 1)->count();
-        $ucons = Consultation::all()->where('answered', '=', 1)->count();
+        $ucons = Consultation::all()->where('answered', '=', 0)->count();
         return view('dashboard.index', compact('posts', 'users', 'cons', 'ucons'));
     }
 }
