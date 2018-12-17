@@ -2,17 +2,19 @@
 
 @section ('content')
     @include('layouts.categories')
-    @if(isset($posts->last()->title))
-    <div class="container">
-        <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark">
-            <div class="col-md-6 px-0">
-                <h1 class="display-4 font-italic">{{ $posts->last()->title }}</h1>
-                <p class="lead my-3" style="max-height: 6rem; overflow: hidden;">{{ $posts->last()->body }}</p>
-                <p class="lead mb-0"><a href="/posts/{{ $posts->last()->id }}" class="text-white font-weight-bold">Continue reading...</a></p>
+    @if(isset($posts))
+        @if(isset($posts->last()->title))
+            <div class="container">
+                <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark">
+                    <div class="col-md-6 px-0">
+                        <h1 class="display-4 font-italic">{{ $posts->last()->title }}</h1>
+                        <p class="lead my-3" style="max-height: 6rem; overflow: hidden;">{{ $posts->last()->body }}</p>
+                        <p class="lead mb-0"><a href="/posts/{{ $posts->last()->id }}" class="text-white font-weight-bold">Continue reading...</a></p>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-@endif
+        @endif
+    @endif
     <main role="main" class="container">
         <div class="row">
             <div class="col-md-10 blog-main">
